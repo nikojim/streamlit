@@ -1,0 +1,6 @@
+streamlit
+vosk
+openai-whisper
+pyttsx3
+fpdf
+ffmpeg-python
