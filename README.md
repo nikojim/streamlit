@@ -1,36 +1,26 @@
-# 🎙️ Audio Transcription App (Vosk + Whisper)
+# 🎙️ Audio Transcription App (Vosk Only)
 
-This Streamlit app allows you to transcribe `.m4a` audio files (or zip folders of them) to text using:
+This is a Streamlit app that transcribes `.m4a` audio files (or `.zip` archives of `.m4a` files) to Spanish text using:
 
-- 🧠 [Vosk](https://alphacephei.com/vosk/) (offline, fast, lightweight)
-- 🤖 [OpenAI Whisper](https://github.com/openai/whisper) (fallback)
-
-Supports:
-- ✅ Single and batch `.m4a` file uploads
-- ✅ Real-time progress bar and status
-- ✅ Text-to-Speech output (TTS)
-- ✅ Export to `.txt` or `.pdf`
-- ✅ 100% compatible with **Python 3.13**
-- ✅ Ready for **Streamlit Cloud deployment**
+- 🧠 [Vosk](https://alphacephei.com/vosk/) — fully offline speech recognition
 
 ---
 
-## 🚀 Features
+## ✅ Features
 
-| Feature                | Vosk       | Whisper     |
-|------------------------|------------|-------------|
-| Offline transcription  | ✅         | ❌ (uses CPU/GPU) |
-| Spanish language       | ✅         | ✅          |
-| Multiple files support | ✅         | ✅          |
-| TTS voice playback     | ✅         | ✅          |
-| Export to `.txt`/`.pdf`| ✅         | ✅          |
+- Upload single `.m4a` or `.zip` with many
+- Batch transcription with progress bar
+- Optional TTS (Text-to-Speech) for playback
+- Export results to `.txt` or `.pdf`
+- 100% local + compatible with Python 3.13
+- Deployable to [Streamlit Cloud](https://streamlit.io/cloud)
 
 ---
 
-## 🧰 How to Run Locally
+## 🧰 Local Setup
 
 ### 1. Clone the repo
 
 ```bash
-git clone https://github.com/yourusername/audio-transcriber-app.git
-cd audio-transcriber-app
+git clone https://github.com/yourusername/streamlit-transcriber.git
+cd streamlit-transcriber
