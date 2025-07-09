@@ -1,6 +1,5 @@
 import streamlit as st
 from vosk import Model, KaldiRecognizer
-import whisper
 import subprocess
 import wave
 import json
@@ -13,7 +12,6 @@ import tempfile
 
 # === CONFIG ===
 VOSK_MODEL_PATH = "vosk-model-small-es-0.42"
-WHISPER_MODEL_NAME = "base"  # tiny, base, small, medium, large
 
 # === HELPERS ===
 def convert_to_wav(input_path, output_path):
@@ -45,13 +43,6 @@ def transcribe_with_vosk(wav_path, update_progress):
     results.append(final.get("text", ""))
     return " ".join(results)
 
-def transcribe_with_whisper(audio_path, update_progress):
-    model = whisper.load_model(WHISPER_MODEL_NAME)
-    update_progress(0.4)
-    result = model.transcribe(audio_path, language="es")
-    update_progress(0.95)
-    return result['text']
-
 def speak(text):
     engine = pyttsx3.init()
     engine.setProperty("voice", "spanish")
@@ -72,18 +63,15 @@ def export_to_pdf(text):
     pdf.output("transcripcion.pdf")
     return "transcripcion.pdf"
 
-def handle_transcription(file_path, method, progress_cb):
+def handle_transcription(file_path, progress_cb):
     progress_cb(0.1)
     wav_path = "converted.wav"
     convert_to_wav(file_path, wav_path)
-    if method == "Vosk (offline)":
-        return transcribe_with_vosk(wav_path, progress_cb)
-    else:
-        return transcribe_with_whisper(wav_path, progress_cb)
+    return transcribe_with_vosk(wav_path, progress_cb)
 
 # === STREAMLIT APP ===
-st.set_page_config(page_title="🎙️ Transcriptor de Audio con Vosk & Whisper", layout="centered")
-st.title("🎧 Transcriptor (.m4a → Texto) con Vosk y Whisper")
+st.set_page_config(page_title="🎙️ Transcriptor de Audio con Vosk", layout="centered")
+st.title("🎧 Transcriptor (.m4a → Texto) con Vosk")
 
 col1, col2 = st.columns(2)
 with col1:
@@ -91,7 +79,6 @@ with col1:
     uploaded_file = st.file_uploader("Archivo de audio o ZIP", type=["m4a", "zip"])
 
 with col2:
-    method = st.radio("Motor de transcripción", ["Vosk (offline)", "Whisper (OpenAI)"])
     tts = st.checkbox("🔈 Leer en voz alta", value=False)
     export_format = st.radio("💾 Exportar como", ["TXT", "PDF"])
 
@@ -122,7 +109,7 @@ if uploaded_file:
     for idx, path in enumerate(input_paths):
         status.info(f"Transcribiendo archivo {idx+1}/{len(input_paths)}: {os.path.basename(path)}")
         try:
-            result = handle_transcription(path, method, update_progress)
+            result = handle_transcription(path, update_progress)
             texts.append((os.path.basename(path), result))
         except Exception as e:
             texts.append((os.path.basename(path), f"❌ Error: {e}"))
