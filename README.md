@@ -1,19 +1,18 @@
-# 🎙️ Audio Transcription App (Vosk Only)
+# 🎙️ Audio Transcription App (Vosk Only, Streamlit)
 
-This is a Streamlit app that transcribes `.m4a` audio files (or `.zip` archives of `.m4a` files) to Spanish text using:
-
-- 🧠 [Vosk](https://alphacephei.com/vosk/) — fully offline speech recognition
+This Streamlit app transcribes `.m4a` audio (or zip archives of `.m4a`) to Spanish text using the [Vosk](https://alphacephei.com/vosk/) offline speech recognition engine.
 
 ---
 
 ## ✅ Features
 
-- Upload single `.m4a` or `.zip` with many
-- Batch transcription with progress bar
-- Optional TTS (Text-to-Speech) for playback
-- Export results to `.txt` or `.pdf`
-- 100% local + compatible with Python 3.13
-- Deployable to [Streamlit Cloud](https://streamlit.io/cloud)
+- Upload `.m4a` files or ZIP folders
+- Upload the Vosk model as a `.zip` file inside the app
+- Offline transcription (no Whisper/OpenAI)
+- Batch processing with progress bar
+- Optional TTS (Text-to-Speech)
+- Export transcriptions to `.txt` or `.pdf`
+- Fully compatible with Python 3.13 and Streamlit Cloud
 
 ---
 
