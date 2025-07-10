@@ -1,5 +1,0 @@
-streamlit
-vosk
-pyttsx3
-fpdf
-ffmpeg-python
