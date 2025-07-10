@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Whisper models
+*.pt
+whisper_models/
+
+# Temporary files
+*.wav
+*.tmp
+temp_*
+
+# OS
+.DS_Store
+Thumbs.db
